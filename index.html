@@ -10,14 +10,14 @@
 	body{
 		text-align: center;
 		font-size:40px;
-  		display: grid;
+  	display: grid;
 		grid: inline;
 	}
  .button {
   font-size:15px;
   font-family:Arial;
-  width:140px;
-  height:50px;
+  width:50px;
+  height:150px;
   border-width:1px;
   color:#fff;
   border-color:#337bc4;
@@ -28,12 +28,17 @@
   border-bottom-right-radius:5px;
   box-shadow: 3px 4px 0px 0px #0cb545;
   text-shadow: 0px 1px 0px #22d31c;
-  background:linear-gradient(#0ec624, #2be189);
   margin: 20px;
 }
 img{
 	width: 50vw;
 	height: 50vh;
+}
+#kot1{
+  background-image: url("https://cdn-icons-png.flaticon.com/512/2700/2700600.png");
+}
+#kot2{
+  background-image: url("https://cdn-icons-png.flaticon.com/512/4924/4924938.png");
 }
 .button:hover {
   background: linear-gradient(#1bd1a6, #2bd792);
@@ -48,26 +53,25 @@ img{
           kot2.onclick=LoadKot;
           prokot = document.querySelector(".prokotikov");
       }
-      async function LoadKot() // Асинхронный метод для работы с промисами
+      async function LoadKot() 
       {
-          let url="";
-	       // Проверяется кто вызвал функцию через this - 
+          let url=""; 
           if (this.classList.contains("kot1"))  url = 'kotik1.html'; 
-          else if (this.classList.contains("kot2")) url = 'kotik2.html';// Если в сss классах кнопки написано kot2 то вызвать kotik2.html
-          let response = await fetch(url); // Отправляем пеона за нашим файлом и прерываем метод
+          else if (this.classList.contains("kot2")) url = 'kotik2.html';
+          let response = await fetch(url); 
           if (response.ok) {  
                 let html = await response.text();
                 prokot.innerHTML = html; 
             } else {
-                alert("Ошибка HTTP: " + response.status); // Иначе громко ругаемся
+                alert("Ошибка HTTP: " + response.status);
             }
       }
   </script>
 </head>
  <body>
-	<div class="button kot1">Капучино</div>
+	<div class="button kot1">Лазанья</div>
 	<br>
-	<div class="button kot2">Эспрессо</div>
+	<div class="button kot2"></div>
 	<br>
 	
 	<div class="prokotikov"></div>
