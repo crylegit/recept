@@ -10,6 +10,8 @@
 	body{
 		text-align: center;
 		font-size:40px;
+  		display: grid;
+		grid: inline;
 	}
  .button {
   font-size:15px;
@@ -24,24 +26,26 @@
   border-top-right-radius:5px;
   border-bottom-left-radius:5px;
   border-bottom-right-radius:5px;
-  box-shadow: 3px 4px 0px 0px #1564ad;
-  text-shadow: 0px 1px 0px #528ecc;
-  background:linear-gradient(#79bbff, #378de5);
+  box-shadow: 3px 4px 0px 0px #0cb545;
+  text-shadow: 0px 1px 0px #22d31c;
+  background:linear-gradient(#0ec624, #2be189);
+  margin: 20px;
 }
-
+img{
+	width: 50vw;
+	height: 50vh;
+}
 .button:hover {
-  background: linear-gradient(#378de5, #79bbff);
+  background: linear-gradient(#1bd1a6, #2bd792);
 }
   </style>
   <script>
   let prokot; 
-      window.onload=function(){ // Вешаются обработчики событий из кода на кнопки при загрузке окна
+      window.onload=function(){ 
           let kot1=document.querySelector(".kot1");
           kot1.onclick=LoadKot;
           let kot2=document.querySelector(".kot2");
           kot2.onclick=LoadKot;
-          let kot3=document.querySelector(".kot3");
-          kot3.onclick=LoadKot;
           prokot = document.querySelector(".prokotikov");
       }
       async function LoadKot() // Асинхронный метод для работы с промисами
@@ -50,13 +54,10 @@
 	       // Проверяется кто вызвал функцию через this - 
           if (this.classList.contains("kot1"))  url = 'kotik1.html'; 
           else if (this.classList.contains("kot2")) url = 'kotik2.html';// Если в сss классах кнопки написано kot2 то вызвать kotik2.html
-          else if (this.classList.contains("kot3")) url = 'kotik3.html';
           let response = await fetch(url); // Отправляем пеона за нашим файлом и прерываем метод
-          // Сюда мы попадаем, когда пеон вернулся с результатом
-          if (response.ok) { // если HTTP-статус в диапазоне 200-299 
-                 // получаем тело ответа (см. про этот метод ниже)
-                let html = await response.text();  // Отправляем пеона поискать текст ответа в объекте
-                prokot.innerHTML = html; // И когда найдет, то записываем текст в блок
+          if (response.ok) {  
+                let html = await response.text();
+                prokot.innerHTML = html; 
             } else {
                 alert("Ошибка HTTP: " + response.status); // Иначе громко ругаемся
             }
@@ -64,11 +65,10 @@
   </script>
 </head>
  <body>
-	<div class="button kot1">Загрузить котика 1</div>
+	<div class="button kot1">Капучино</div>
 	<br>
-	<div class="button kot2">Загрузить котика 2</div>
+	<div class="button kot2">Эспрессо</div>
 	<br>
-	<div class="button kot3">Загрузить котика 3</div>
 	
 	<div class="prokotikov"></div>
  </body>
